@@ -1,0 +1,196 @@
+/* reset básico */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  --pink1:#ff9aa2;
+  --pink2:#ff6f91;
+  --rose:#ff4d6d;
+  --gold:#ffd166;
+}
+
+/* fondo degradado animado */
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  min-height:100vh;
+  overflow:hidden;
+  background: linear-gradient(120deg, var(--pink1), #fec2e7, #fff1f7, var(--pink2));
+  background-size:300% 300%;
+  animation: bgMove 12s ease infinite;
+  color:#222;
+  position:relative;
+}
+
+@keyframes bgMove {
+  0%{ background-position:0% 50% }
+  50%{ background-position:100% 50% }
+  100%{ background-position:0% 50% }
+}
+
+/* overlay inicio */
+.start-overlay{
+  position:fixed;
+  z-index:9999;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.45));
+  color:white;
+  font-size:20px;
+  border: none;
+  cursor:pointer;
+  padding:18px 28px;
+  border-radius:12px;
+  transition:opacity .4s ease, transform .3s ease;
+}
+.start-overlay.hidden { opacity:0; pointer-events:none; transform:scale(.98); }
+
+/* background animation containers */
+.background-animation { position:fixed; inset:0; z-index:1; pointer-events:none; }
+.floating-hearts, .floating-stars { position:absolute; inset:0; }
+
+/* partículas corazones y estrellas */
+.particle-heart, .particle-star {
+  position:absolute;
+  pointer-events:none;
+  transform:translateY(0);
+  will-change: transform, opacity;
+}
+.particle-heart { font-size:24px; }
+.particle-star { font-size:18px; }
+
+/* animación de subida */
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity:0; }
+  10% { opacity:1; }
+  60% { opacity:1; }
+  100% { transform: translateY(-120vh) scale(.9); opacity:0; }
+}
+
+/* layout principal */
+.container { position:relative; z-index:5; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:30px; text-align:center; }
+
+/* corazón grande */
+.big-heart {
+  font-size:110px;
+  line-height:1;
+  animation: heartbeat 1.4s ease-in-out infinite;
+  filter: drop-shadow(0 6px 18px rgba(255,77,109,.25));
+  user-select:none;
+}
+@keyframes heartbeat {
+  0%,100%{ transform:scale(1) }
+  50%{ transform:scale(1.08) }
+}
+
+/* texto neón */
+.neon-text h1 {
+  margin-top:16px;
+  font-size:44px;
+  color:#fff;
+  text-shadow:
+    0 0 6px rgba(255,105,180,.6),
+    0 0 14px rgba(255,77,109,.5),
+    0 0 30px rgba(255,20,147,.25);
+  min-height:60px;
+}
+
+/* efecto typewriter */
+.typewriter {
+  display:inline-block;
+  border-right:3px solid rgba(255,105,180,.9);
+  white-space:nowrap;
+  animation: blink 0.8s step-end infinite;
+}
+@keyframes blink { 50% { border-color: transparent; } }
+
+/* botones */
+.music-button, .surprise-button {
+  border:none;
+  padding:12px 26px;
+  border-radius:999px;
+  cursor:pointer;
+  box-shadow: 0 8px 22px rgba(0,0,0,.12);
+  font-weight:600;
+}
+.music-button {
+  background:linear-gradient(90deg,var(--pink2),var(--rose));
+  color:white;
+  margin-top:18px;
+}
+.surprise-button {
+  background:linear-gradient(90deg,var(--gold),#ffb347);
+  color:#333;
+  margin-top:18px;
+}
+
+/* mensaje oculto */
+.hidden-message {
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:40;
+  visibility:hidden;
+  opacity:0;
+}
+.hidden-message .message-content{
+  background:rgba(255,255,255,0.98);
+  padding:34px;
+  border-radius:18px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  max-width:520px;
+  text-align:center;
+}
+.hidden-message.show { visibility:visible; opacity:1; transition:all .45s ease; transform:translateY(0); }
+.hidden-message .message-content p { font-size:20px; color:#222; margin-bottom:12px; }
+
+/* fuegos artificiales */
+.fireworks-container { position:fixed; inset:0; pointer-events:none; z-index:35; }
+.spark {
+  position:absolute;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  transform:translate(0,0);
+  opacity:1;
+  animation: sparkMove var(--dur,1.2s) ease-out forwards;
+  will-change: transform, opacity;
+  box-shadow: 0 0 12px rgba(255,255,255,.7);
+}
+@keyframes sparkMove {
+  to { transform: translate(var(--dx), var(--dy)) scale(.3); opacity:0; }
+}
+
+/* mini corazones */
+.mini-heart {
+  position:fixed;
+  font-size:42px;
+  pointer-events:none;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  animation: miniUp 1.2s ease-out forwards;
+  z-index:60;
+}
+@keyframes miniUp {
+  0% { transform: translate(-50%,-50%) scale(0.2); opacity:1; }
+  100% { transform: translate(calc(-50% + -60px), -220px) scale(1.7); opacity:0; }
+}
+
+/* responsive */
+@media (max-width:768px){
+  .big-heart{ font-size:72px; }
+  .neon-text h1 { font-size:28px; }
+  .hidden-message .message-content p{ font-size:18px; }
+}
+@media (max-width:480px){
+  .big-heart{ font-size:56px; }
+  .neon-text h1 { font-size:22px; }
+  .music-button, .surprise-button { padding:10px 20px; font-size:14px; }
+}
+@media (max-width:360px){
+  .big-heart{ font-size:48px; }
+  .neon-text h1 { font-size:20px; }
+}
