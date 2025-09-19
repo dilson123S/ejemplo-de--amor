@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Solo tu mi amor  💕</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Overlay inicial -->
+  <button id="start-overlay" class="start-overlay">Haz clic para comenzar — Permite audio</button>
+
+  <!-- Fondo animado -->
+  <div class="background-animation">
+    <div class="floating-hearts"></div>
+    <div class="floating-stars"></div>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div class="container">
+    <div class="heart-container">
+      <div class="big-heart" title="Haz clic">💖</div>
+    </div>
+
+    <div class="neon-text">
+      <h1 id="love-text" aria-live="polite"></h1>
+    </div>
+
+    <div class="music-controls">
+      <button id="music-btn" class="music-button">
+        <span id="music-icon">🎵</span>
+        <span id="music-status">Reproducir música</span>
+      </button>
+    </div>
+
+    <div class="surprise-container">
+      <button id="surprise-btn" class="surprise-button">✨ Sorpresa para ti ✨</button>
+    </div>
+
+    <div id="hidden-message" class="hidden-message" role="dialog" aria-hidden="true">
+      <div class="message-content">
+        <p>🌹 A mi amada</p>
+        <p>
+          Eres la luz que en mi sombra despierta,<br>
+          la melodía que el silencio entibia,<br>
+          la brisa suave que mi alma sujeta<br>
+          y la esperanza que en mi pecho brilla.<br><br>
+          Tus ojos guardan secretos del cielo,<br>
+          tus labios saben a dulzura eterna,<br>
+          y en cada gesto descubro el anhelo<br>
+          de amar sin tiempo, sin miedo, sin puertas.<br><br>
+          Si el mundo calla, tu voz me sostiene,<br>
+          si todo hiere, tu abrazo me cura,<br>
+          eres la calma que siempre me tiene,<br>
+          eres la vida que nunca se apura.<br><br>
+          Amada mía, razón de mis días,<br>
+          en ti mi amor florece y se guía.
+        </p>
+        <p>Feliz Día del Amor y la Amistad 💖</p>
+      </div>    
+    </div>
+
+    <div id="fireworks" class="fireworks-container" aria-hidden="true"></div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="background-music" loop preload="auto">
+    <source src="musica.mp3/Ed Sheeran - Perfect.mp3" type="audio/mpeg" />
+    Tu navegador no soporta audio.
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
